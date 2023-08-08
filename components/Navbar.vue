@@ -1,7 +1,12 @@
+<script setup>
+import {storeToRefs} from 'pinia'
+import {useCartStore} from "@/stores/cart"
+const {cartLength} = storeToRefs(useCartStore())
+</script>
 <template>
   <div class="navbar bg-base-100">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">Stringed</a>
+      <nuxt-link to="/" class="btn btn-ghost normal-case text-xl">Stringed</nuxt-link>
     </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
@@ -16,10 +21,9 @@
         </label>
         <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
           <div class="card-body">
-            <span class="font-bold text-lg">8 Items</span>
-            <span class="text-info">Subtotal: $999</span>
+            <span class="font-bold text-lg">{{ cartLength }} Items</span>
             <div class="card-actions">
-              <button class="btn btn-primary btn-block">View cart</button>
+              <nuxt-link to="/cart" class="btn btn-primary btn-block">View cart</nuxt-link>
             </div>
           </div>
         </div>

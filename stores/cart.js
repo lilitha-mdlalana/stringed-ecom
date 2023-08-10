@@ -1,23 +1,27 @@
 import { defineStore } from "pinia"
 
-export const useCartStore = defineStore('cart', {
-    state: () => ({
-        cartItems: useLocalStorage("cart", [])
-    }),
-    getters:{
-        getCartItems: (state) => state.cartItems,
-        cartLength: (state) => state.cartItems.length,
-        totalPrice(){
-            //figure out why this doesnt work as supposed to
-            return this.getCartItems.reduce((total,item) => total.price + item.price)
-        },
-    },
-    actions: {
-        addItem(item) {
-            this.cartItems.push(item)
-        },
-        removeItem(index){
-            this.cartItems.splice(index,1)
-        }
+
+export const useCartStore = defineStore('cart', () => {
+    const cartItems = ref([])
+    const totalPrice = ref(0)
+    const cartLength = cartItems.value.length;
+
+    const addItem = item => {
+        cartItems.value = [...cartItems.value, item]
+        totalPrice.value += item.price
     }
-})
+
+    const clearCart = () => {
+        cartItems.value.length = 0
+        totalPrice.value = 0
+    }
+
+    return {
+        cartItems,
+        totalPrice,
+        addItem,
+        cartLength,
+        clearCart
+    }
+},
+    { persist: true })

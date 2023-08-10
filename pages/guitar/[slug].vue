@@ -29,7 +29,9 @@ const addToCart = async () => {
 
                 <div class="lg:py-24">
                     <h2 class="text-3xl font-bold sm:text-4xl">{{ product.name }}</h2>
-
+                    <p class="mt-4 text-gray-600 font-bold">
+                        R {{ product.price }}
+                    </p>
                     <p class="mt-4 text-gray-600">
                         {{ product.description }}
                     </p>

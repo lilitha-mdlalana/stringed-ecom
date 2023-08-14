@@ -20,6 +20,14 @@ const addToCart = async () => {
 </script>
 
 <template>
+    <Head>
+        <Title>{{ product.name }}</Title>
+        <Meta name="description"
+            :content="product.description"/>
+        <Meta name="keywords" content="e-commerce, guitar,stringed instruments"/>
+        <Meta name="robots" content="index, follow"/>
+        <Meta name="language" content="English"/>
+    </Head>
     <section>
         <div class="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
